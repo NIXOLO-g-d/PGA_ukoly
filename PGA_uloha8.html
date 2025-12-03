@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS kalkulačka</title>
+</head>
+<body>
+    <form>
+        <label for="cislo1Input">zadej první číslo: </label>
+        <input type="number" id="cislo1Input"><br>
+        <label for="operaceInput">zadej znak operace: </label>
+        <input type="text" id="operaceInput"><br>
+        <label for="cislo2Input">zadej druhé číslo: </label>
+        <input type="number" id="cislo2Input"><br>
+        <input type="button" value="Počítej!" onclick="kalkulacka()">
+    </form>
+    <p id="odstVystup"></p>
+        <script>
+            // Jednoduchá kalkulačka: calculate vrací výsledek nebo chybovou zprávu (string)
+            function calculate(a, b, operace) {
+                let x = Number(a);
+                let y = Number(b);
+
+                if (!isFinite(x) || !isFinite(y)) {
+                    return 'Chyba: a nebo b není platné číslo';
+                }
+
+                switch (operace) {
+                    case '+':
+                        return x + y;
+                    case '-':
+                        return x - y;
+                    case '*':
+                        return x * y;
+                    case '/':
+                        if (y === 0) return 'Chyba: dělení nulou';
+                        return x / y;
+                    default:
+                        return 'Chyba: neznámá operace (použijte +, -, * nebo /)';
+                }
+            }
+
+            // Funkce volaná tlačítkem v HTML
+            function kalkulacka() {
+                let a = document.getElementById('cislo1Input').value;
+                let b = document.getElementById('cislo2Input').value;
+                let oper = document.getElementById('operaceInput').value.trim();
+                let vysledek = calculate(a, b, oper);
+                document.getElementById('odstVystup').textContent = 'Výsledek: ' + vysledek;
+            }
+        </script>
+</body>
+</html>
