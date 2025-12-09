@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Řešení rovnice</title>
+    <script>
+        function solveEquation() {
+            let a = parseFloat(document.getElementById("a").value);
+            let b = parseFloat(document.getElementById("b").value);
+            
+            if (isNaN(a) || isNaN(b)) {
+                alert("Zadejte platné číslo pro a a b.");
+                return;
+            }
+
+            let result = "";
+            
+            if (a === 0 && b === 0) {
+                result = "Rovnice má nekonečně mnoho řešení.";
+            } 
+            else if (a === 0) {
+                result = "Rovnice nemá žádné řešení.";
+            } 
+            else {
+                let x = -b / a;
+                result = "Rovnice má řešení: x = " + x;
+            }
+
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Řešení rovnice ax + b = 0</h2>
+    <label for="a">Koeficient a:</label>
+    <input type="text" id="a"><br><br>
+    
+    <label for="b">Koeficient b:</label>
+    <input type="text" id="b"><br><br>
+    
+    <button onclick="solveEquation()">Vyřešit rovnici</button>
+
+    <p id="result"></p>
+
+</body>
+</html>
